@@ -1,0 +1,24 @@
+def categorize_lungs(score):
+    """Шкала 0–30 баллов (чем выше — тем лучше)"""
+    if score >= 21:
+        return "Good"
+    elif score >= 11:
+        return "Moderate"
+    else:
+        return "Severe"
+
+def get_recommendation(category, aqi=None):
+    if category == "Severe":
+        return "Срочно обратитесь к врачу!"
+    
+    if aqi is not None and aqi > 150:
+        return "Воздух сейчас очень плохой! Оставайтесь дома. При плохом самочувствии — к врачу."
+    
+    return "Вот несколько упражнений для укрепления лёгких:"
+
+# Быстрый тест
+if __name__ == "__main__":
+    print("Тест логики:")
+    for s in [28, 15, 8, 25]:
+        cat = categorize_lungs(s)
+        print(f"Баллы {s:2d} → {cat:8} | Рекомендация: {get_recommendation(cat, aqi=170)}")
